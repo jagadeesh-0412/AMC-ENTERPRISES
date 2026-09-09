@@ -536,7 +536,7 @@
 
     <main class="admin-main">
       <div class="admin-panel active" id="panelDashboard">
-        <div class="admin-topbar"><h2>Dashboard</h2></div>
+        <div class="admin-topbar"><div><h2>Dashboard</h2><div style="font-size:12px;color:var(--ink-soft);margin-top:4px;">☁ Shared cloud data — changes sync across devices</div></div></div>
         <div class="kpi-grid">
           <div class="kpi-card"><div class="kpi-num" id="kpiTotal">0</div><div class="kpi-label">Total products</div></div>
           <div class="kpi-card"><div class="kpi-num" id="kpiIn">0</div><div class="kpi-label">In stock</div></div>
@@ -639,36 +639,76 @@
 <script>
 (function(){
 
-async function storeSet(key, value){
-  try{
-    if(window.storage){ await window.storage.set(key, JSON.stringify(value), true); return; }
-  }catch(e){}
+async function localStoreSet(key, value){
   try{ localStorage.setItem(key, JSON.stringify(value)); }catch(e){}
 }
+async function localStoreGet(key, fallback){
+  try{ const v=localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; }
+}
+let cloudProductsAvailable = false;
+
+function settingsFromApi(row){
+  if(!row) return null;
+  return {
+    phone: row.phone || "",
+    whatsapp: row.whatsapp || "",
+    smsTo: row.sms_to || "",
+    email: row.email || "",
+    address: row.address || "",
+    hours: row.hours || "",
+    gstin: row.gstin || "",
+    heroTitle: row.hero_title || "",
+    heroSub: row.hero_sub || ""
+  };
+}
+
+async function storeSet(key, value){
+  try{
+    if(key === "amc:products"){
+      const cloudProducts = Array.isArray(value) ? value.map(function(p){
+        const copy = Object.assign({}, p);
+        // Keep the cloud record small; the four supplied catalogue images are embedded in this HTML and restored locally.
+        if(copy.image && String(copy.image).length > 250000) copy.image = "";
+        return copy;
+      }) : [];
+      const r = await fetch("/api/products", {method:"PUT", headers:{"Content-Type":"application/json"}, body:JSON.stringify({products:cloudProducts})});
+      if(!r.ok) throw new Error("Cloud product save failed");
+    } else if(key === "amc:settings"){
+      const r = await fetch("/api/settings", {method:"PUT", headers:{"Content-Type":"application/json"}, body:JSON.stringify(value)});
+      if(!r.ok) throw new Error("Cloud settings save failed");
+    }
+    await localStoreSet(key,value);
+    return true;
+  }catch(e){
+    await localStoreSet(key,value);
+    console.warn("Shared cloud save unavailable; local fallback used.", e);
+    return false;
+  }
+}
+
 async function storeGet(key, fallback){
   try{
-    if(window.storage){
-      const r = await window.storage.get(key, true);
-      return r ? JSON.parse(r.value) : fallback;
+    if(key === "amc:products"){
+      const r = await fetch("/api/products", {cache:"no-store"});
+      if(r.ok){ const x=await r.json(); if(Array.isArray(x)){ cloudProductsAvailable = x.length > 0; await localStoreSet(key,x); return x; } }
+    } else if(key === "amc:settings"){
+      const r = await fetch("/api/settings", {cache:"no-store"});
+      if(r.ok){ const x=await r.json(); const mapped=settingsFromApi(x); if(mapped){ await localStoreSet(key,mapped); return mapped; } }
     }
-  }catch(e){}
-  try{
-    const v = localStorage.getItem(key);
-    return v ? JSON.parse(v) : fallback;
-  }catch(e){ return fallback; }
+  }catch(e){ console.warn("Shared cloud read unavailable; local fallback used.",e); }
+  return localStoreGet(key,fallback);
 }
 
 const DEFAULT_SETTINGS = {
   phone: "+91 9600364064 / +91 9600364065",
-  whatsapp: "918637662831",
+  whatsapp: "919600364064",
   smsTo: "+919600364064,+919600364065",
   email: "info@amcenterprises.in",
   address: "No. 13, Cauvery College Road, Annamalai Nagar, Tiruchirappalli – 620018, Tamil Nadu",
   hours: "Mon – Sat, 9:30 AM – 8:00 PM",
   gstin: "33AASFA8890L1ZO",
   heroTitle: "Trusted Healthcare & Pharmaceutical Distribution",
-  heroSub: "AMC Enterprises is a Tiruchirappalli-based wholesale and retail business serving healthcare needs with medical and healthcare products, including adhesive tapes, bandages and burn therapy dressings.",
-  adminPassword: "amc@2026"
+  heroSub: "AMC Enterprises is a Tiruchirappalli-based wholesale and retail business serving healthcare needs with medical and healthcare products, including adhesive tapes, bandages and burn therapy dressings."
 };
 
 const DEFAULT_PRODUCTS = [
@@ -876,8 +916,9 @@ function renderEnquiries(){
   }
   document.querySelectorAll("[data-del-enq]").forEach(function(btn){
     btn.onclick = async function(){
+      try{ await fetch("/api/enquiries?id="+encodeURIComponent(btn.dataset.delEnq),{method:"DELETE"}); }catch(e){}
       enquiries = enquiries.filter(function(e){ return e.id !== btn.dataset.delEnq; });
-      await storeSet("amc:enquiries", enquiries);
+      await localStoreSet("amc:enquiries", enquiries);
       renderEnquiries();
       renderDashboardEnquiries();
   renderCart();
@@ -950,9 +991,66 @@ function resizeImage(file, cb){
   reader.readAsDataURL(file);
 }
 
+async function refreshSharedProducts(){
+  try{
+    const r=await fetch("/api/products",{cache:"no-store"});
+    if(!r.ok) return false;
+    const x=await r.json();
+    if(!Array.isArray(x) || !x.length) return false;
+    const old=JSON.stringify(products);
+    products=x;
+    DEFAULT_PRODUCTS.forEach(function(dp){
+      const existing=products.find(function(p){return p.id===dp.id;});
+      if(existing){ if(!existing.image) existing.image=dp.image; if(!existing.manufacturer) existing.manufacturer=dp.manufacturer; if(!existing.pack) existing.pack=dp.pack; }
+    });
+    if(JSON.stringify(products)!==old){ renderAdminProducts(); renderProducts(); renderKpis(); }
+    await localStoreSet("amc:products",products);
+    return true;
+  }catch(e){ return false; }
+}
+async function refreshSharedSettings(){
+  try{
+    const r=await fetch("/api/settings",{cache:"no-store"});
+    if(!r.ok) return false;
+    const x=settingsFromApi(await r.json());
+    if(!x) return false;
+    settings=Object.assign({},DEFAULT_SETTINGS,x);
+    await localStoreSet("amc:settings",settings);
+    applySettingsToDom();
+    return true;
+  }catch(e){ return false; }
+}
+async function syncSharedData(){
+  await refreshSharedProducts();
+  await refreshSharedSettings();
+}
+
+async function refreshEnquiriesFromServer(){
+  try{
+    const r=await fetch("/api/enquiries",{cache:"no-store"});
+    if(r.ok){ const x=await r.json(); if(Array.isArray(x)){ enquiries=x; await localStoreSet("amc:enquiries",enquiries); renderEnquiries(); renderDashboardEnquiries(); } }
+  }catch(e){}
+}
+
 function updateAdminOrderBadge(){const n=orders.filter(o=>o.status==="New").length;const b=document.getElementById("adminOrderBadge");if(b){b.textContent=n;b.style.display=n?"inline-flex":"none";}const s=document.getElementById("adminNotificationStrip");if(s)s.textContent=n?"🔔 "+n+" new order(s) need attention.":"No new orders.";}
-function renderAdminOrders(){const t=document.getElementById("adminOrderRows"),e=document.getElementById("adminOrdersEmpty");if(!t)return;if(!orders.length){t.innerHTML="";e.style.display="block";updateAdminOrderBadge();return;}e.style.display="none";t.innerHTML=orders.slice().reverse().map(o=>'<tr><td>'+escapeHtml(o.date)+'</td><td><b>'+escapeHtml(o.id)+'</b></td><td>'+escapeHtml(o.customer.name)+'<br>'+escapeHtml(o.customer.phone)+'</td><td>'+o.items.map(i=>escapeHtml(i.name)+" × "+i.qty).join(", ")+'</td><td>'+money(o.total)+'</td><td>'+escapeHtml(o.paymentStatus)+'</td><td><select class="order-status" data-order-status="'+o.id+'"><option '+(o.status==='New'?'selected':'')+'>New</option><option '+(o.status==='Confirmed'?'selected':'')+'>Confirmed</option><option '+(o.status==='Packed'?'selected':'')+'>Packed</option><option '+(o.status==='Delivered'?'selected':'')+'>Delivered</option><option '+(o.status==='Cancelled'?'selected':'')+'>Cancelled</option></select></td><td><button class="btn btn-danger btn-sm" data-del-order="'+o.id+'">Delete</button></td></tr>').join("");document.querySelectorAll("[data-order-status]").forEach(s=>s.onchange=async()=>{const o=orders.find(x=>x.id===s.dataset.orderStatus);if(o){o.status=s.value;await storeSet("amc:orders",orders);updateAdminOrderBadge();}});document.querySelectorAll("[data-del-order]").forEach(b=>b.onclick=async()=>{orders=orders.filter(x=>x.id!==b.dataset.delOrder);await storeSet("amc:orders",orders);renderAdminOrders();});updateAdminOrderBadge();}
-async function refreshOrdersFromServer(){try{const r=await fetch("/api/orders");if(r.ok){const x=await r.json();if(Array.isArray(x)){orders=x;await storeSet("amc:orders",orders);renderAdminOrders();}}}catch(e){}}
+function renderAdminOrders(){
+  const t=document.getElementById("adminOrderRows"),e=document.getElementById("adminOrdersEmpty");
+  if(!t)return;
+  if(!orders.length){t.innerHTML="";e.style.display="block";updateAdminOrderBadge();return;}
+  e.style.display="none";
+  t.innerHTML=orders.slice().reverse().map(o=>'<tr><td>'+escapeHtml(o.date||o.createdAt||"")+'</td><td><b>'+escapeHtml(o.id)+'</b></td><td>'+escapeHtml(o.customer?.name||"")+'<br>'+escapeHtml(o.customer?.phone||"")+'</td><td>'+(o.items||[]).map(i=>escapeHtml(i.name)+" × "+i.qty).join(", ")+'</td><td>'+money(o.total)+'</td><td>'+escapeHtml(o.paymentStatus||"Cash on Delivery")+'</td><td><select class="order-status" data-order-status="'+escapeHtml(o.id)+'"><option '+(o.status==='New'?'selected':'')+'>New</option><option '+(o.status==='Confirmed'?'selected':'')+'>Confirmed</option><option '+(o.status==='Packed'?'selected':'')+'>Packed</option><option '+(o.status==='Delivered'?'selected':'')+'>Delivered</option><option '+(o.status==='Cancelled'?'selected':'')+'>Cancelled</option></select></td><td><button class="btn btn-danger btn-sm" data-del-order="'+escapeHtml(o.id)+'">Delete</button></td></tr>').join("");
+  document.querySelectorAll("[data-order-status]").forEach(s=>s.onchange=async()=>{
+    const o=orders.find(x=>x.id===s.dataset.orderStatus);
+    if(!o)return;
+    try{ const r=await fetch("/api/orders?id="+encodeURIComponent(o.id),{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({status:s.value})}); if(!r.ok) throw new Error("Update failed"); o.status=s.value; updateAdminOrderBadge(); showToast("Order status updated"); }catch(e){ alert("Could not update the order. Please log in again or refresh."); renderAdminOrders(); }
+  });
+  document.querySelectorAll("[data-del-order]").forEach(b=>b.onclick=async()=>{
+    if(!confirm("Delete this order?"))return;
+    try{ const r=await fetch("/api/orders?id="+encodeURIComponent(b.dataset.delOrder),{method:"DELETE"}); if(!r.ok) throw new Error("Delete failed"); orders=orders.filter(x=>x.id!==b.dataset.delOrder); renderAdminOrders(); showToast("Order deleted"); }catch(e){ alert("Could not delete the order."); }
+  });
+  updateAdminOrderBadge();
+}
+async function refreshOrdersFromServer(){try{const r=await fetch("/api/orders",{cache:"no-store"});if(r.ok){const x=await r.json();if(Array.isArray(x)){orders=x;await localStoreSet("amc:orders",orders);renderAdminOrders();}}}catch(e){}}
 
 async function boot(){
   settings = Object.assign({}, DEFAULT_SETTINGS, await storeGet("amc:settings", {}));
@@ -972,8 +1070,8 @@ async function boot(){
   enquiries = await storeGet("amc:enquiries", []);
   orders = await storeGet("amc:orders", []);
   loadCart();
-  await storeSet("amc:products", products);
-  if(Object.keys(await storeGet("amc:settings", {})).length === 0){ await storeSet("amc:settings", settings); }
+  if(!await localStoreGet("amc:products", null)){ await localStoreSet("amc:products", products); }
+  if(Object.keys(await localStoreGet("amc:settings", {})).length === 0){ await localStoreSet("amc:settings", settings); }
 
   applySettingsToDom();
   renderCategories();
@@ -1001,7 +1099,8 @@ async function boot(){
       date: new Date().toLocaleString()
     };
     enquiries.push(entry);
-    await storeSet("amc:enquiries", enquiries);
+    try{ await fetch("/api/enquiries",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(entry)}); }catch(e){}
+    await localStoreSet("amc:enquiries", enquiries);
     document.getElementById("contactForm").reset();
     document.getElementById("cfMsg").classList.add("ok");
     renderEnquiries();
@@ -1024,23 +1123,30 @@ async function boot(){
   document.getElementById("backToSiteBtn").onclick = function(){
     document.getElementById("siteShell").classList.remove("admin-mode");
   };
-  document.getElementById("logoutBtn").onclick = function(){
+  document.getElementById("logoutBtn").onclick = async function(){
+    try{ await fetch("/api/admin-logout",{method:"POST"}); }catch(e){}
     sessionStorage.removeItem("amcAdminLoggedIn");
     document.getElementById("siteShell").classList.remove("admin-mode");
   };
 
-  document.getElementById("adminLoginForm").onsubmit = function(e){
+  document.getElementById("adminLoginForm").onsubmit = async function(e){
     e.preventDefault();
     const val = document.getElementById("adminPasswordInput").value;
-    if(val === settings.adminPassword){
+    try{
+      const r=await fetch("/api/admin-login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:val})});
+      if(!r.ok) throw new Error("Incorrect password");
       sessionStorage.setItem("amcAdminLoggedIn", "1");
       document.getElementById("adminLoginError").style.display = "none";
       document.getElementById("adminPasswordInput").value = "";
       document.getElementById("adminLoginView").style.display = "none";
       document.getElementById("adminDashboardView").style.display = "grid";
-    } else {
-      document.getElementById("adminLoginError").style.display = "block";
-    }
+      await syncSharedData();
+      if(!cloudProductsAvailable){ products=DEFAULT_PRODUCTS.slice(); await storeSet("amc:products",products); cloudProductsAvailable=true; }
+      await refreshOrdersFromServer();
+      await refreshEnquiriesFromServer();
+      renderAdminProducts(); renderProducts(); renderKpis();
+      showToast("Admin connected — changes are shared across devices");
+    }catch(err){ document.getElementById("adminLoginError").style.display = "block"; }
   };
 
   document.querySelectorAll(".admin-nav-btn[data-panel]").forEach(function(btn){
@@ -1112,17 +1218,16 @@ async function boot(){
     showToast("Settings saved");
   };
 
-  document.getElementById("savePasswordBtn").onclick = async function(){
-    const val = document.getElementById("setNewPassword").value;
-    if(val && val.length >= 4){
-      settings.adminPassword = val;
-      await storeSet("amc:settings", settings);
-      document.getElementById("setNewPassword").value = "";
-      showToast("Password updated");
-    } else if(val){
-      alert("Use at least 4 characters for the password.");
-    }
+  document.getElementById("savePasswordBtn").onclick = function(){
+    alert("For security, the admin password is stored on the Vercel server. Change ADMIN_PASSWORD in Vercel Environment Variables, then redeploy.");
   };
+  setInterval(async function(){
+    if(document.hidden) return;
+    await refreshSharedProducts();
+    await refreshSharedSettings();
+    if(sessionStorage.getItem("amcAdminLoggedIn") === "1") { await refreshOrdersFromServer(); await refreshEnquiriesFromServer(); }
+  }, 5000);
+
 }
 
 boot();
