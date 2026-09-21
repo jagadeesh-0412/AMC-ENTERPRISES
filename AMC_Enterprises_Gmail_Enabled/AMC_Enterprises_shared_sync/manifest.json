@@ -1,0 +1,9 @@
+{
+  "name": "AMC Enterprises",
+  "short_name": "AMC Enterprises",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1f6f5c",
+  "description": "AMC Enterprises pharmaceutical and healthcare product catalogue in Tiruchirappalli."
+}

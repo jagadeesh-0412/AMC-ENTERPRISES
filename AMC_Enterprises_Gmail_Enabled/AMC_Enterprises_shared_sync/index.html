@@ -3,6 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AMC Enterprises in Tiruchirappalli — pharmaceutical products, surgical dressings and healthcare consumables for pharmacies, clinics and hospitals. Cash on Delivery ordering and WhatsApp enquiries available.">
+<meta name="keywords" content="AMC Enterprises Tiruchirappalli, pharmaceutical distributor Trichy, medical suppliers Tiruchirappalli, surgical products Trichy, healthcare products Tamil Nadu">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#1f6f5c">
+<link rel="canonical" href="https://amccom.vercel.app/">
+<link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="AMC Enterprises">
 <title>AMC Enterprises — Pharmaceutical Wholesale Distribution</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -233,7 +242,38 @@
   .field-grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
   .img-upload-preview{width:80px;height:80px;border-radius:8px;background:var(--paper-alt);object-fit:cover;margin-top:8px;}
   .toast{position:fixed;bottom:22px;right:22px;background:var(--ink);color:#fff;padding:12px 18px;border-radius:8px;font-size:13.5px;z-index:300;display:none;}
+
+  /* Growth & trust upgrades */
+  .growth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+  .growth-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:22px}
+  .growth-card h3{font-size:17px;margin:8px 0 7px}.growth-card p{color:var(--ink-soft);font-size:13.5px;line-height:1.6}
+  .action-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.action-row .btn{white-space:nowrap}
+  .lookup-box{background:#fff;border:1px solid var(--border);border-radius:12px;padding:22px;margin-top:20px}
+  .lookup-result{margin-top:14px;padding:14px;border-radius:9px;background:var(--paper-alt);display:none}.lookup-result.show{display:block}
+  .status-timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px}.status-step{padding:10px 6px;text-align:center;border-radius:8px;background:#eee;font-size:11px;color:#667}.status-step.active{background:var(--pine-soft);color:var(--pine);font-weight:600}
+  .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}.review-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px}.review-stars{letter-spacing:2px;color:var(--amber);font-size:16px}.review-card p{margin:10px 0;color:var(--ink-soft);font-size:14px;line-height:1.6}.review-card small{color:#77828b}
+  .faq-list{margin-top:22px;display:grid;gap:10px}.faq-list details{background:#fff;border:1px solid var(--border);border-radius:10px;padding:15px 17px}.faq-list summary{cursor:pointer;font-weight:600}.faq-list details p{color:var(--ink-soft);font-size:14px;line-height:1.6;margin-top:10px}
+  .trust-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.trust-badge{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:#fff;font-size:12px;color:var(--ink-soft)}
+  .install-banner{position:fixed;left:16px;right:16px;bottom:16px;max-width:520px;margin:auto;background:#fff;border:1px solid var(--border);box-shadow:0 10px 35px rgba(21,36,54,.15);border-radius:12px;padding:14px 16px;display:none;z-index:280}.install-banner.show{display:flex;align-items:center;gap:12px}.install-banner .grow{flex:1}.install-banner p{font-size:12px;color:var(--ink-soft);margin-top:3px}
+  .admin-mini-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.mini-stat{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px}.mini-stat b{font-size:21px}.mini-stat span{display:block;color:var(--ink-soft);font-size:11px;margin-top:4px}
+  @media(max-width:900px){.growth-grid,.review-grid{grid-template-columns:1fr 1fr}.status-timeline{grid-template-columns:1fr 1fr 1fr}}
+  @media(max-width:620px){.growth-grid,.review-grid{grid-template-columns:1fr}.admin-mini-grid{grid-template-columns:1fr 1fr}.status-timeline{grid-template-columns:1fr}}
+
 </style>
+<script type="application/ld+json">{
+  "@context":"https://schema.org",
+  "@type":"LocalBusiness",
+  "name":"AMC Enterprises",
+  "url":"https://amccom.vercel.app/",
+  "telephone":"+91 9600364064",
+  "email":"info@amcenterprises.in",
+  "address":{"@type":"PostalAddress","streetAddress":"No. 13, Cauvery College Road, Annamalai Nagar","addressLocality":"Tiruchirappalli","postalCode":"620018","addressRegion":"Tamil Nadu","addressCountry":"IN"},
+  "openingHours":"Mo-Sa 09:30-20:00",
+  "taxID":"33AASFA8890L1ZO",
+  "areaServed":"Tiruchirappalli, Tamil Nadu, India",
+  "sameAs":["https://www.indiamart.com/amc-enterprises-tiruchirappalli/"]
+}</script>
+<script type="application/ld+json" id="dynamicProductSchema"></script>
 </head>
 <body>
 <div class="site-shell" id="siteShell">
@@ -250,12 +290,14 @@
         <a href="#company-images">Images</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
+        <a href="#support">Support</a>
       </nav>
       <div class="navactions">
         <button class="icon-btn cart-btn" id="cartOpenBtn" type="button" title="Shopping cart" aria-label="Shopping cart"><span class="cart-icon">🛒</span><span class="cart-count" id="cartCount">0</span></button>
         <a class="icon-btn" id="waHeaderBtn" href="#" target="_blank" title="WhatsApp">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f6f5c" stroke-width="1.8"><path d="M20 12a8 8 0 1 1-3.6-6.7M20 12l-1 5-5 1"/></svg>
         </a>
+        <button class="btn btn-ghost btn-sm" id="customerAccountBtn" type="button">My account</button>
         <a class="btn btn-ghost btn-sm" id="adminEnterBtn" href="#">Admin</a>
       </div>
     </div>
@@ -380,7 +422,47 @@
     </div>
   </section>
 
-  <section id="about">
+  
+  <section id="support" style="background:var(--paper-alt);">
+    <div class="wrap">
+      <div class="section-head"><h2>Customer support & quick actions</h2><p>Find products faster, request an unavailable item, track an order, or contact AMC Enterprises directly.</p></div>
+      <div class="growth-grid">
+        <div class="growth-card"><span class="eyebrow">Order tracking</span><h3>Track your order</h3><p>Enter your AMC order number and the phone number used at checkout.</p><div class="action-row"><button class="btn btn-pine btn-sm" id="trackOrderBtn" type="button">Track order</button></div></div>
+        <div class="growth-card"><span class="eyebrow">Product request</span><h3>Can't find a product?</h3><p>Tell our team what you need. Requests are saved in the staff dashboard for follow-up.</p><div class="action-row"><button class="btn btn-amber btn-sm" id="requestProductBtn" type="button">Request a product</button></div></div>
+        <div class="growth-card"><span class="eyebrow">Local business</span><h3>Visit & contact us</h3><p>No. 13, Cauvery College Road, Annamalai Nagar, Tiruchirappalli – 620018.</p><div class="action-row"><a class="btn btn-outline btn-sm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=AMC%20Enterprises%20Cauvery%20College%20Road%20Tiruchirappalli">Open Google Maps</a><a class="btn btn-ghost btn-sm" target="_blank" rel="noopener" href="https://www.indiamart.com/amc-enterprises-tiruchirappalli/">IndiaMART</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">Trust</span><h2>Customer reviews</h2><p>We only publish genuine feedback. If you have ordered from AMC Enterprises, share your experience with our team.</p></div>
+      <div class="review-grid" id="publicReviewGrid"><div class="review-card"><div class="review-stars">★★★★★</div><p>Customer reviews will appear here after they are reviewed and approved by AMC Enterprises.</p><small>Verified feedback policy</small></div></div>
+      <div class="action-row"><button class="btn btn-outline btn-sm" id="writeReviewBtn" type="button">Share your experience</button><a class="btn btn-ghost btn-sm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=AMC%20Enterprises%20Tiruchirappalli">Find AMC on Google Maps</a></div>
+    </div>
+  </section>
+
+  <section id="faq" style="background:var(--paper-alt);">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">FAQ</span><h2>Frequently asked questions</h2></div>
+      <div class="faq-list">
+        <details><summary>How can I place an order?</summary><p>Add products to the cart and choose Cash on Delivery at checkout, or send the cart directly to AMC Enterprises on WhatsApp.</p></details>
+        <details><summary>Are prices and stock final?</summary><p>The catalogue is a live guide. AMC Enterprises confirms final availability, pricing and delivery details before fulfilment.</p></details>
+        <details><summary>Where do you operate?</summary><p>AMC Enterprises is based in Tiruchirappalli. Delivery availability is confirmed by the team for each order.</p></details>
+        <details><summary>Can I request a product that is not listed?</summary><p>Yes. Use the Product Request option and tell us the product name and quantity you need.</p></details>
+        <details><summary>How do I contact AMC Enterprises?</summary><p>Call +91 9600364064 / +91 9600364065, email info@amcenterprises.in, or use WhatsApp.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="company-info">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">Business information</span><h2>Company & compliance</h2><p>Only verified company information is displayed here. Additional licences or certifications can be added by the business when available.</p></div>
+      <div class="trust-strip"><span class="trust-badge">GSTIN: 33AASFA8890L1ZO</span><span class="trust-badge">Cash on Delivery</span><span class="trust-badge">Tiruchirappalli, Tamil Nadu</span><span class="trust-badge">Mon–Sat · 9:30 AM–8:00 PM</span></div>
+    </div>
+  </section>
+
+<section id="about">
     <div class="wrap about-grid">
       <div>
         <h2>About AMC Enterprises</h2>
@@ -527,6 +609,9 @@
       <button class="admin-nav-btn active" data-panel="panelDashboard">Dashboard</button>
       <button class="admin-nav-btn" data-panel="panelProducts">Products and stock</button>
       <button class="admin-nav-btn" data-panel="panelEnquiries">Enquiries</button>
+      <button class="admin-nav-btn" data-panel="panelRequests">Product requests <span class="admin-badge" id="adminRequestBadge">0</span></button>
+      <button class="admin-nav-btn" data-panel="panelReviews">Reviews</button>
+      <button class="admin-nav-btn" data-panel="panelReports">Reports</button>
       <button class="admin-nav-btn" data-panel="panelOrders">Orders <span class="admin-badge" id="adminOrderBadge">0</span></button>
       <button class="admin-nav-btn" data-panel="panelSettings">Site settings</button>
       <div class="spacer"></div>
@@ -574,15 +659,37 @@
         </div>
       </div>
 
-      <div class="admin-panel" id="panelOrders"><div class="row-actions-top"><h2>Orders & notifications</h2><button class="btn btn-ghost btn-sm" id="refreshOrdersBtn">Refresh</button></div><div class="admin-card"><div class="admin-notification-strip" id="adminNotificationStrip">No new orders.</div><table class="data-table"><thead><tr><th>Date</th><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th></th></tr></thead><tbody id="adminOrderRows"></tbody></table><div class="empty-admin" id="adminOrdersEmpty">No orders yet.</div></div></div>
+      
+      <div class="admin-panel" id="panelRequests"><div class="admin-topbar"><h2>Product requests</h2><button class="btn btn-ghost btn-sm" id="refreshRequestsBtn">Refresh</button></div><div class="admin-card"><table class="data-table"><thead><tr><th>Date</th><th>Product</th><th>Qty</th><th>Customer</th><th>Phone</th><th>Notes</th><th></th></tr></thead><tbody id="adminRequestRows"></tbody></table><div class="empty-admin" id="adminRequestsEmpty">No product requests yet.</div></div></div>
+      <div class="admin-panel" id="panelReviews"><div class="admin-topbar"><h2>Reviews</h2><button class="btn btn-ghost btn-sm" id="refreshReviewsBtn">Refresh</button></div><div class="admin-card"><table class="data-table"><thead><tr><th>Date</th><th>Name</th><th>Rating</th><th>Review</th><th>Status</th><th></th></tr></thead><tbody id="adminReviewRows"></tbody></table><div class="empty-admin" id="adminReviewsEmpty">No reviews yet.</div></div></div>
+      <div class="admin-panel" id="panelReports"><div class="admin-topbar"><h2>Sales & order reports</h2><button class="btn btn-amber btn-sm" id="exportOrdersBtn">Export CSV</button></div><div class="admin-card"><div class="admin-mini-grid"><div class="mini-stat"><b id="reportOrders">0</b><span>Total orders</span></div><div class="mini-stat"><b id="reportRevenue">₹0</b><span>Order value</span></div><div class="mini-stat"><b id="reportPending">0</b><span>Open orders</span></div><div class="mini-stat"><b id="reportDelivered">0</b><span>Delivered</span></div></div><div id="reportSummary" style="color:var(--ink-soft);font-size:13px;"></div></div></div>
+
+<div class="admin-panel" id="panelOrders"><div class="row-actions-top"><h2>Orders & notifications</h2><button class="btn btn-ghost btn-sm" id="refreshOrdersBtn">Refresh</button></div><div class="admin-card"><div class="admin-notification-strip" id="adminNotificationStrip">No new orders.</div><table class="data-table"><thead><tr><th>Date</th><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th></th></tr></thead><tbody id="adminOrderRows"></tbody></table><div class="empty-admin" id="adminOrdersEmpty">No orders yet.</div></div></div>
 
       <div class="admin-panel" id="panelSettings">
         <div class="admin-topbar"><h2>Site settings</h2></div>
         <div class="admin-card" style="max-width:560px;">
           <h3 style="font-size:15px;margin-bottom:16px;">Contact and business details</h3>
           <div class="form-field"><label>Phone number</label><input type="text" id="setPhone"></div>
-          <div class="form-field"><label>WhatsApp number (with country code, digits only)</label><input type="text" id="setWhatsapp" placeholder="e.g. 919000000000"></div><div class="form-field"><label>Order SMS recipient numbers</label><input type="text" id="setSmsTo" value="+91 9600364064, +91 9600364065" placeholder="+919600364064,+919600364065"><small style="display:block;color:var(--ink-soft);margin-top:5px;">Automatic SMS requires the order server to be configured with an SMS provider.</small></div>
+          <div class="form-field"><label>WhatsApp number (with country code, digits only)</label><input type="text" id="setWhatsapp" placeholder="e.g. 919000000000"></div><div class="form-field"><label>Order SMS recipient numbers</label><input type="text" id="setSmsTo" placeholder="+919600364064,+919600364065"><small style="display:block;color:var(--ink-soft);margin-top:5px;">Automatic SMS requires the order server to be configured with an SMS provider.</small></div>
           <div class="form-field"><label>Email</label><input type="text" id="setEmail"></div>
+          <div class="admin-card" style="margin:18px 0;padding:18px;background:var(--paper-alt);">
+            <h3 style="font-size:15px;margin-bottom:8px;">Gmail email notifications</h3>
+            <p style="color:var(--ink-soft);font-size:13px;line-height:1.55;margin-bottom:14px;">Connect one Gmail account securely. The website uses Gmail only to send notifications; it does not read your inbox.</p>
+            <div id="gmailStatusBox" style="padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:#fff;font-size:13px;margin-bottom:12px;">Checking Gmail connection…</div>
+            <div class="action-row" style="margin-bottom:14px;"><button class="btn btn-outline btn-sm" id="gmailConnectBtn" type="button">Connect Gmail</button><button class="btn btn-ghost btn-sm" id="gmailDisconnectBtn" type="button" style="display:none;">Disconnect</button><button class="btn btn-pine btn-sm" id="gmailTestBtn" type="button" style="display:none;">Send test email</button></div>
+            <div class="form-field"><label>Admin notification email</label><input type="email" id="setGmailAdminEmail" placeholder="Where AMC admin emails should be sent"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
+              <label><input type="checkbox" id="setEmailNewOrder" checked> New order</label>
+              <label><input type="checkbox" id="setEmailOrderConfirmed" checked> Order confirmed</label>
+              <label><input type="checkbox" id="setEmailOrderPacked" checked> Order packed</label>
+              <label><input type="checkbox" id="setEmailOrderCancelled" checked> Order cancelled</label>
+              <label><input type="checkbox" id="setEmailProductRequest" checked> Product request</label>
+              <label><input type="checkbox" id="setEmailReview" checked> New review</label>
+              <label><input type="checkbox" id="setEmailEnquiry" checked> Customer enquiry</label>
+            </div>
+            <small style="display:block;color:var(--ink-soft);margin-top:10px;">Customer order-status emails are sent only when the customer entered an email address at checkout.</small>
+          </div>
           <div class="form-field"><label>Address</label><input type="text" id="setAddress"></div>
           <div class="form-field"><label>Business hours</label><input type="text" id="setHours"></div>
           <div class="form-field"><label>GSTIN</label><input type="text" id="setGstin"></div>
@@ -632,8 +739,16 @@
   </div>
 </div>
 
-<div class="cart-overlay" id="cartOverlay"><aside class="cart-drawer"><div class="cart-head"><div><h3>Your cart</h3><span id="cartSummaryText">0 items</span></div><button class="modal-close" id="cartCloseBtn" type="button">×</button></div><div class="cart-items" id="cartItems"></div><div class="cart-foot"><div class="cart-total-row"><span>Subtotal</span><b id="cartSubtotal">₹0.00</b></div><div class="cart-total-note">Delivery charges and final availability are confirmed by AMC Enterprises.</div><button class="btn btn-pine" id="checkoutBtn" type="button" style="width:100%;justify-content:center;">Proceed to checkout</button></div></aside></div>
+<div class="cart-overlay" id="cartOverlay"><aside class="cart-drawer"><div class="cart-head"><div><h3>Your cart</h3><span id="cartSummaryText">0 items</span></div><button class="modal-close" id="cartCloseBtn" type="button">×</button></div><div class="cart-items" id="cartItems"></div><div class="cart-foot"><div class="cart-total-row"><span>Subtotal</span><b id="cartSubtotal">₹0.00</b></div><div class="cart-total-note">Delivery charges and final availability are confirmed by AMC Enterprises.</div><button class="btn btn-pine" id="checkoutBtn" type="button" style="width:100%;justify-content:center;">Proceed to checkout</button>
+      <button class="btn btn-outline" id="cartWhatsAppBtn" type="button" style="width:100%;justify-content:center;margin-top:8px;">Order cart on WhatsApp</button></div></aside></div>
 <div class="modal-overlay" id="checkoutOverlay"><div class="modal-box checkout-box"><div class="checkout-head"><div><h3>Place your order</h3><p>Enter your delivery and contact details.</p></div><button class="modal-close" id="checkoutCloseBtn" type="button">×</button></div><form id="checkoutForm"><div class="field-grid2"><div class="form-field"><label>Customer name</label><input type="text" id="coName" required></div><div class="form-field"><label>Phone</label><input type="tel" id="coPhone" required></div></div><div class="field-grid2"><div class="form-field"><label>Email</label><input type="email" id="coEmail"></div><div class="form-field"><label>GSTIN (optional)</label><input type="text" id="coGstin"></div></div><div class="form-field"><label>Delivery address</label><textarea id="coAddress" required></textarea></div><div class="form-field"><label>Order notes</label><textarea id="coNotes" placeholder="Delivery instructions, preferred time, etc."></textarea></div><div class="checkout-total-card"><span>Order total</span><strong id="checkoutTotal">₹0.00</strong></div><div class="cod-card"><span class="cod-icon">✓</span><div><b>Cash on Delivery</b><p>Pay when your order is delivered. AMC Enterprises will confirm final availability, price and delivery details.</p></div></div><div class="checkout-actions"><button type="button" class="btn btn-pine" id="placeOrderRequestBtn">Place COD order</button></div><div class="checkout-message" id="checkoutMessage"></div></form></div></div>
+
+<div class="modal-overlay" id="customerOverlay"><div class="modal-box"><div class="checkout-head"><div><h3>Customer account</h3><p>Save your contact details and view your recent orders.</p></div><button class="modal-close" id="customerCloseBtn" type="button">×</button></div><div id="customerLoggedOut"><form id="customerLoginForm"><div class="form-field"><label>Email or phone</label><input id="customerLoginId" required></div><div class="form-field"><label>Password</label><input type="password" id="customerLoginPassword" required></div><button class="btn btn-pine" type="submit">Log in</button></form><div style="margin-top:18px;border-top:1px solid var(--border);padding-top:18px;"><b>Create an account</b><form id="customerRegisterForm" style="margin-top:12px;"><div class="field-grid2"><div class="form-field"><label>Name</label><input id="customerRegName" required></div><div class="form-field"><label>Phone</label><input id="customerRegPhone" required></div></div><div class="field-grid2"><div class="form-field"><label>Email</label><input type="email" id="customerRegEmail"></div><div class="form-field"><label>Password</label><input type="password" id="customerRegPassword" minlength="6" required></div></div><div class="form-field"><label>Address</label><textarea id="customerRegAddress"></textarea></div><button class="btn btn-outline" type="submit">Create account</button></form></div></div><div id="customerLoggedIn" style="display:none;"><div id="customerWelcome"></div><div class="action-row"><button class="btn btn-pine btn-sm" id="customerRefreshOrders" type="button">Refresh orders</button><button class="btn btn-ghost btn-sm" id="customerLogout" type="button">Log out</button></div><div id="customerOrderHistory" style="margin-top:18px;"></div></div><div class="checkout-message" id="customerMessage"></div></div></div>
+<div class="modal-overlay" id="trackOverlay"><div class="modal-box"><div class="checkout-head"><div><h3>Track an order</h3><p>Use the order number from your confirmation.</p></div><button class="modal-close" id="trackCloseBtn" type="button">×</button></div><form id="trackForm"><div class="form-field"><label>Order number</label><input id="trackOrderId" placeholder="AMC-..." required></div><div class="form-field"><label>Phone number</label><input id="trackPhone" required></div><button class="btn btn-pine" type="submit">Check status</button></form><div class="lookup-result" id="trackResult"></div></div></div>
+<div class="modal-overlay" id="requestOverlay"><div class="modal-box"><div class="checkout-head"><div><h3>Request a product</h3><p>Tell us what you need and our team can check availability.</p></div><button class="modal-close" id="requestCloseBtn" type="button">×</button></div><form id="requestForm"><div class="form-field"><label>Product name</label><input id="requestProductName" required></div><div class="field-grid2"><div class="form-field"><label>Quantity</label><input type="number" min="1" id="requestQty" value="1" required></div><div class="form-field"><label>Phone</label><input id="requestPhone" required></div></div><div class="form-field"><label>Your name</label><input id="requestName" required></div><div class="form-field"><label>Notes</label><textarea id="requestNotes" placeholder="Brand, strength, pack size or other details"></textarea></div><button class="btn btn-amber" type="submit">Send product request</button></form><div class="checkout-message" id="requestMessage"></div></div></div>
+<div class="modal-overlay" id="reviewOverlay"><div class="modal-box"><div class="checkout-head"><div><h3>Share your experience</h3><p>Your feedback is reviewed before it appears publicly.</p></div><button class="modal-close" id="reviewCloseBtn" type="button">×</button></div><form id="reviewForm"><div class="field-grid2"><div class="form-field"><label>Name</label><input id="reviewName" required></div><div class="form-field"><label>Rating</label><select id="reviewRating"><option value="5">★★★★★ 5</option><option value="4">★★★★☆ 4</option><option value="3">★★★☆☆ 3</option><option value="2">★★☆☆☆ 2</option><option value="1">★☆☆☆☆ 1</option></select></div></div><div class="form-field"><label>Review</label><textarea id="reviewText" minlength="10" required></textarea></div><button class="btn btn-pine" type="submit">Submit review</button></form><div class="checkout-message" id="reviewMessage"></div></div></div>
+<div class="install-banner" id="installBanner"><div class="grow"><b>Install AMC Enterprises</b><p>Keep the catalogue one tap away on your phone.</p></div><button class="btn btn-pine btn-sm" id="installAppBtn" type="button">Install</button><button class="btn btn-ghost btn-sm" id="dismissInstallBtn" type="button">×</button></div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -658,7 +773,17 @@ function settingsFromApi(row){
     hours: row.hours || "",
     gstin: row.gstin || "",
     heroTitle: row.hero_title || "",
-    heroSub: row.hero_sub || ""
+    heroSub: row.hero_sub || "",
+    gmailEnabled: row.gmail_enabled !== false,
+    gmailAddress: row.gmail_address || "",
+    gmailAdminEmail: row.gmail_admin_email || "",
+    emailNewOrder: row.email_new_order !== false,
+    emailOrderConfirmed: row.email_order_confirmed !== false,
+    emailOrderPacked: row.email_order_packed !== false,
+    emailOrderCancelled: row.email_order_cancelled !== false,
+    emailProductRequest: row.email_product_request !== false,
+    emailReview: row.email_review !== false,
+    emailEnquiry: row.email_enquiry !== false
   };
 }
 
@@ -702,7 +827,7 @@ async function storeGet(key, fallback){
 const DEFAULT_SETTINGS = {
   phone: "+91 9600364064 / +91 9600364065",
   whatsapp: "919600364064",
-  smsTo: "+919600364064,+919600364065",
+  smsTo: "",
   email: "info@amcenterprises.in",
   address: "No. 13, Cauvery College Road, Annamalai Nagar, Tiruchirappalli – 620018, Tamil Nadu",
   hours: "Mon – Sat, 9:30 AM – 8:00 PM",
@@ -725,6 +850,45 @@ let activeCategory = "All";
 let searchTerm = "";
 let cart=[];
 let orders=[];
+let productRequests=[];
+let reviews=[];
+let deferredInstallPrompt=null;
+
+
+function mapOrderStatus(status){
+  return {New:0,Confirmed:1,Packed:2,Delivered:4,Cancelled:-1}[status] ?? 0;
+}
+function updateDynamicProductSchema(){
+  const el=document.getElementById("dynamicProductSchema"); if(!el)return;
+  const items=(products||[]).filter(p=>p.name).slice(0,50).map(p=>({"@type":"Product",name:p.name,brand:p.manufacturer||undefined,offers:{"@type":"Offer",priceCurrency:"INR",price:Number(p.price||0).toFixed(2),availability:Number(p.stock||0)>0?"https://schema.org/InStock":"https://schema.org/OutOfStock",url:location.href+"#products"}}));
+  el.textContent=JSON.stringify({"@context":"https://schema.org","@type":"ItemList",itemListElement:items.map((x,i)=>({"@type":"ListItem",position:i+1,item:x}))});
+}
+function openModal(id){const x=document.getElementById(id);if(x)x.classList.add('open');}
+function closeModal(id){const x=document.getElementById(id);if(x)x.classList.remove('open');}
+async function apiJson(url,options){const r=await fetch(url,Object.assign({headers:{'Content-Type':'application/json'}},options||{}));const data=await r.json().catch(()=>({}));if(!r.ok)throw new Error(data.error||'Request failed');return data;}
+function cartWhatsAppText(){
+  const lines=cart.map(x=>`• ${x.name} × ${x.qty}`).join('\n');
+  return `Hi AMC Enterprises, I'd like to order:\n${lines}\n\nPlease confirm availability, final price and delivery details. Payment: Cash on Delivery.`;
+}
+function renderPublicReviews(){
+  const box=document.getElementById('publicReviewGrid'); if(!box)return;
+  const approved=(reviews||[]).filter(r=>r.status==='approved').slice(0,6);
+  box.innerHTML=approved.length?approved.map(r=>`<div class="review-card"><div class="review-stars">${'★'.repeat(Number(r.rating||5))}${'☆'.repeat(5-Number(r.rating||5))}</div><p>${escapeHtml(r.review)}</p><small>${escapeHtml(r.name)}</small></div>`).join(''):'<div class="review-card"><div class="review-stars">★★★★★</div><p>Customer reviews will appear here after they are reviewed and approved by AMC Enterprises.</p><small>Verified feedback policy</small></div>';
+}
+async function refreshPublicReviews(){try{reviews=await apiJson('/api/reviews',{method:'GET'});renderPublicReviews();}catch(e){console.warn('Reviews unavailable',e);}}
+
+function isAdminLoggedIn(){
+  return sessionStorage.getItem("amcAdminLoggedIn") === "1";
+}
+
+async function refreshProductRequests(){if(!isAdminLoggedIn())return;try{productRequests=await apiJson('/api/product-requests',{method:'GET'});renderAdminRequests();}catch(e){console.warn('Requests unavailable',e);}}
+function renderAdminRequests(){const t=document.getElementById('adminRequestRows'),e=document.getElementById('adminRequestsEmpty');if(!t)return;if(!productRequests.length){t.innerHTML='';e.style.display='block';return}e.style.display='none';t.innerHTML=productRequests.map(r=>`<tr><td>${escapeHtml(r.date||r.created_at||'')}</td><td><b>${escapeHtml(r.product_name)}</b></td><td>${escapeHtml(r.quantity)}</td><td>${escapeHtml(r.name)}</td><td>${escapeHtml(r.phone)}</td><td>${escapeHtml(r.notes||'')}</td><td><button class="btn btn-danger btn-sm" data-del-request="${escapeHtml(r.id)}">Delete</button></td></tr>`).join('');document.querySelectorAll('[data-del-request]').forEach(b=>b.onclick=async()=>{await apiJson('/api/product-requests?id='+encodeURIComponent(b.dataset.delRequest),{method:'DELETE'});refreshProductRequests();});const badge=document.getElementById('adminRequestBadge');if(badge){badge.textContent=productRequests.length;badge.style.display=productRequests.length?'inline-flex':'none';}}
+async function refreshAdminReviews(){if(!isAdminLoggedIn())return;try{reviews=await apiJson('/api/reviews?admin=1',{method:'GET'});renderAdminReviews();}catch(e){console.warn('Admin reviews unavailable',e);}}
+function renderAdminReviews(){const t=document.getElementById('adminReviewRows'),e=document.getElementById('adminReviewsEmpty');if(!t)return;if(!reviews.length){t.innerHTML='';e.style.display='block';return}e.style.display='none';t.innerHTML=reviews.map(r=>`<tr><td>${escapeHtml(r.date||r.created_at||'')}</td><td>${escapeHtml(r.name)}</td><td>${'★'.repeat(Number(r.rating||0))}</td><td>${escapeHtml(r.review)}</td><td>${escapeHtml(r.status)}</td><td><button class="btn btn-pine btn-sm" data-approve-review="${escapeHtml(r.id)}">Approve</button> <button class="btn btn-danger btn-sm" data-del-review="${escapeHtml(r.id)}">Delete</button></td></tr>`).join('');document.querySelectorAll('[data-approve-review]').forEach(b=>b.onclick=async()=>{await apiJson('/api/reviews?id='+encodeURIComponent(b.dataset.approveReview),{method:'PATCH',body:JSON.stringify({status:'approved'})});refreshAdminReviews();});document.querySelectorAll('[data-del-review]').forEach(b=>b.onclick=async()=>{await apiJson('/api/reviews?id='+encodeURIComponent(b.dataset.delReview),{method:'DELETE'});refreshAdminReviews();});}
+function renderReports(){const total=orders.length,revenue=orders.reduce((a,o)=>a+Number(o.total||0),0),open=orders.filter(o=>!['Delivered','Cancelled'].includes(o.status)).length,del=orders.filter(o=>o.status==='Delivered').length;document.getElementById('reportOrders').textContent=total;document.getElementById('reportRevenue').textContent=money(revenue);document.getElementById('reportPending').textContent=open;document.getElementById('reportDelivered').textContent=del;document.getElementById('reportSummary').textContent=total?`Average order value: ${money(revenue/total)}. Reports use the orders stored in the shared cloud database.`:'No orders available yet.';}
+function exportOrdersCSV(){const rows=[['Order','Date','Customer','Phone','Total','Payment','Status']].concat(orders.map(o=>[o.id,o.date||'',o.customer?.name||'',o.customer?.phone||'',Number(o.total||0).toFixed(2),o.paymentStatus||'',o.status||'']));const csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='amc-orders-report.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
+async function trackOrder(id,phone){const r=await apiJson('/api/order-track?id='+encodeURIComponent(id)+'&phone='+encodeURIComponent(phone),{method:'GET'});const o=r.order;const steps=['New','Confirmed','Packed','Delivered'];const current=mapOrderStatus(o.status);return `<b>${escapeHtml(o.id)}</b><div style="margin-top:6px;">Status: <b>${escapeHtml(o.status)}</b> · Total: <b>${money(o.total)}</b></div><div class="status-timeline">${steps.map((x,i)=>`<div class="status-step ${current>=i?'active':''}">${x}</div>`).join('')}</div><div style="margin-top:10px;color:var(--ink-soft);font-size:12px;">${(o.items||[]).map(i=>escapeHtml(i.name)+' × '+i.qty).join(', ')}</div>`;}
+async function refreshCustomerAccount(){try{const r=await apiJson('/api/customer-account',{method:'GET'});document.getElementById('customerLoggedOut').style.display='none';document.getElementById('customerLoggedIn').style.display='block';document.getElementById('customerWelcome').innerHTML=`<b>Welcome, ${escapeHtml(r.customer.name)}</b><p style="color:var(--ink-soft);font-size:13px;margin-top:5px;">${escapeHtml(r.customer.phone||r.customer.email||'')}</p>`;const h=document.getElementById('customerOrderHistory');h.innerHTML='Loading orders…';const x=await apiJson('/api/customer-account?orders=1',{method:'GET'});h.innerHTML=x.orders.length?x.orders.map(o=>`<div class="lookup-box"><b>${escapeHtml(o.id)}</b><div style="font-size:13px;margin-top:5px;">${escapeHtml(o.status)} · ${money(o.total)}</div><small style="color:var(--ink-soft);">${escapeHtml(o.date||'')}</small></div>`).join(''):'<div class="lookup-box">No orders linked to this account yet.</div>';}catch(e){document.getElementById('customerLoggedOut').style.display='block';document.getElementById('customerLoggedIn').style.display='none';}}
 
 function stockStatus(qty){
   if(qty <= 0) return {label:"Out of stock", cls:"badge-out"};
@@ -767,8 +931,11 @@ function applySettingsToDom(){
 
   document.getElementById("setPhone").value = settings.phone;
   document.getElementById("setWhatsapp").value = settings.whatsapp;
-  document.getElementById("setSmsTo").value = settings.smsTo || "+919600364064,+919600364065";
+  document.getElementById("setSmsTo").value = settings.smsTo || "";
   document.getElementById("setEmail").value = settings.email;
+  const ge=document.getElementById("setGmailAdminEmail"); if(ge) ge.value=settings.gmailAdminEmail||"";
+  const checks={setEmailNewOrder:settings.emailNewOrder,setEmailOrderConfirmed:settings.emailOrderConfirmed,setEmailOrderPacked:settings.emailOrderPacked,setEmailOrderCancelled:settings.emailOrderCancelled,setEmailProductRequest:settings.emailProductRequest,setEmailReview:settings.emailReview,setEmailEnquiry:settings.emailEnquiry};
+  Object.keys(checks).forEach(id=>{const el=document.getElementById(id);if(el)el.checked=checks[id]!==false;});
   document.getElementById("setAddress").value = settings.address;
   document.getElementById("setHours").value = settings.hours;
   document.getElementById("setGstin").value = settings.gstin;
@@ -794,6 +961,7 @@ function renderProducts(){
   const grid=document.getElementById("productGrid"),term=searchTerm.trim().toLowerCase();
   const list=products.filter(p=>(activeCategory==="All"||p.category===activeCategory)&&(!term||p.name.toLowerCase().includes(term)||(p.manufacturer||"").toLowerCase().includes(term)));
   if(!list.length){grid.innerHTML='<div class="empty-note" style="grid-column:1/-1;">No products match. Try a different search or category.</div>';return;}
+  updateDynamicProductSchema();
   grid.innerHTML=list.map(function(p){const st=stockStatus(p.stock),price=Number(p.price||0);const img=p.image?'<img src="'+p.image+'" alt="'+escapeHtml(p.name)+'">':'<svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#1f6f5c" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 4v16M4 9h5M4 15h5"/></svg>';const action=p.stock>0?'<div class="p-order-row"><div class="qty-control"><button type="button" data-minus="'+p.id+'">−</button><span id="qty-'+p.id+'">1</span><button type="button" data-plus="'+p.id+'">+</button></div><button class="btn btn-pine btn-sm" data-add-cart="'+p.id+'">Add to cart</button></div>':'<div class="p-order-row"><button class="btn btn-ghost btn-sm" disabled>Currently unavailable</button></div>';return '<div class="p-card"><div class="p-img">'+img+'</div><div class="p-body"><span class="p-cat">'+escapeHtml(p.category)+'</span><span class="p-name">'+escapeHtml(p.name)+'</span><span class="p-meta">'+escapeHtml(p.manufacturer||"")+(p.pack?" · "+escapeHtml(p.pack):"")+'</span><span class="product-price">'+(price>0?'₹'+price.toFixed(2):'Price on request')+'</span><span class="badge '+st.cls+'">'+st.label+'</span>'+action+'<div class="p-foot"><a class="btn btn-outline btn-sm" target="_blank" href="'+waLink("Hi, I'd like to enquire about "+p.name+".")+'">Enquire on WhatsApp</a></div></div></div>';}).join("");bindProductCartButtons();
 }
 function bindProductCartButtons(){document.querySelectorAll("[data-add-cart]").forEach(b=>b.onclick=function(){const id=b.dataset.addCart;addToCart(id,Math.max(1,parseInt(document.getElementById("qty-"+id).textContent,10)||1));});document.querySelectorAll("[data-minus]").forEach(b=>b.onclick=function(){const e=document.getElementById("qty-"+b.dataset.minus);e.textContent=Math.max(1,(parseInt(e.textContent,10)||1)-1);});document.querySelectorAll("[data-plus]").forEach(b=>b.onclick=function(){const p=products.find(x=>x.id===b.dataset.plus),e=document.getElementById("qty-"+b.dataset.plus);e.textContent=Math.min(p?p.stock:999,(parseInt(e.textContent,10)||1)+1);});}
@@ -1050,7 +1218,7 @@ function renderAdminOrders(){
   });
   updateAdminOrderBadge();
 }
-async function refreshOrdersFromServer(){try{const r=await fetch("/api/orders",{cache:"no-store"});if(r.ok){const x=await r.json();if(Array.isArray(x)){orders=x;await localStoreSet("amc:orders",orders);renderAdminOrders();}}}catch(e){}}
+async function refreshOrdersFromServer(){try{const r=await fetch("/api/orders",{cache:"no-store"});if(r.ok){const x=await r.json();if(Array.isArray(x)){const previousNew=(orders||[]).filter(o=>o.status==="New").length;orders=x;await localStoreSet("amc:orders",orders);renderAdminOrders();renderReports();const currentNew=orders.filter(o=>o.status==="New").length;if(currentNew>previousNew&&"Notification" in window&&Notification.permission==="granted")new Notification("AMC Enterprises — New order",{body:`${currentNew} new order(s) need attention.`});}}}catch(e){}}
 
 async function boot(){
   settings = Object.assign({}, DEFAULT_SETTINGS, await storeGet("amc:settings", {}));
@@ -1074,6 +1242,7 @@ async function boot(){
   if(Object.keys(await localStoreGet("amc:settings", {})).length === 0){ await localStoreSet("amc:settings", settings); }
 
   applySettingsToDom();
+  if(sessionStorage.getItem("amcAdminLoggedIn") === "1") refreshGmailStatus();
   renderCategories();
   renderProducts();
   renderAdminProducts();
@@ -1124,7 +1293,7 @@ async function boot(){
     document.getElementById("siteShell").classList.remove("admin-mode");
   };
   document.getElementById("logoutBtn").onclick = async function(){
-    try{ await fetch("/api/admin-logout",{method:"POST"}); }catch(e){}
+    try{ await fetch("/api/admin-login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"logout"})}); }catch(e){}
     sessionStorage.removeItem("amcAdminLoggedIn");
     document.getElementById("siteShell").classList.remove("admin-mode");
   };
@@ -1144,7 +1313,11 @@ async function boot(){
       if(!cloudProductsAvailable){ products=DEFAULT_PRODUCTS.slice(); await storeSet("amc:products",products); cloudProductsAvailable=true; }
       await refreshOrdersFromServer();
       await refreshEnquiriesFromServer();
-      renderAdminProducts(); renderProducts(); renderKpis();
+      await refreshProductRequests();
+      await refreshAdminReviews();
+      await refreshGmailStatus();
+      renderAdminProducts(); renderProducts(); renderKpis(); renderReports();
+      if("Notification" in window && Notification.permission === "default") Notification.requestPermission().catch(()=>{});
       showToast("Admin connected — changes are shared across devices");
     }catch(err){ document.getElementById("adminLoginError").style.display = "block"; }
   };
@@ -1203,11 +1376,35 @@ async function boot(){
     showToast("Product saved");
   };
 
+  async function refreshGmailStatus(){
+    const box=document.getElementById("gmailStatusBox"), connect=document.getElementById("gmailConnectBtn"), disconnect=document.getElementById("gmailDisconnectBtn"), test=document.getElementById("gmailTestBtn");
+    if(!box)return;
+    try{
+      const r=await fetch("/api/gmail-auth?action=status",{cache:"no-store"});
+      const x=await r.json();
+      if(!r.ok) throw new Error(x.error||"Could not read Gmail status");
+      settings.gmailEnabled=!!x.enabled; settings.gmailAddress=x.email||"";
+      box.innerHTML=x.connected ? `Gmail connected: <b>${escapeHtml(x.email||"")}</b>${x.enabled?'':' <span style="color:var(--coral);">(disabled)</span>'}` : 'Gmail is not connected yet.';
+      connect.style.display=x.connected?'none':'inline-flex'; disconnect.style.display=x.connected?'inline-flex':'none'; test.style.display=x.connected?'inline-flex':'none';
+    }catch(e){box.textContent=e.message||"Gmail status unavailable";connect.style.display="inline-flex";disconnect.style.display="none";test.style.display="none";}
+  }
+  document.getElementById("gmailConnectBtn")?.addEventListener("click",()=>{window.location.href="/api/gmail-auth?action=connect";});
+  document.getElementById("gmailDisconnectBtn")?.addEventListener("click",async()=>{if(!confirm("Disconnect Gmail notifications?"))return;const r=await fetch("/api/gmail-auth?action=disconnect",{method:"POST"});if(r.ok){settings.gmailEnabled=false;settings.gmailAddress="";await refreshGmailStatus();showToast("Gmail disconnected");}else{showToast("Could not disconnect Gmail");}});
+  document.getElementById("gmailTestBtn")?.addEventListener("click",async()=>{const to=document.getElementById("setGmailAdminEmail").value.trim();if(!to){showToast("Enter the admin notification email first");return;}const r=await fetch("/api/gmail-send",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({to})});const x=await r.json();showToast(r.ok?"Test email sent":"Test email failed: "+(x.error||"Unknown error"));});
+
   document.getElementById("saveSettingsBtn").onclick = async function(){
     settings.phone = document.getElementById("setPhone").value.trim();
     settings.whatsapp = document.getElementById("setWhatsapp").value.trim();
     settings.smsTo = document.getElementById("setSmsTo").value.trim();
     settings.email = document.getElementById("setEmail").value.trim();
+    settings.gmailAdminEmail = document.getElementById("setGmailAdminEmail").value.trim();
+    settings.emailNewOrder = document.getElementById("setEmailNewOrder").checked;
+    settings.emailOrderConfirmed = document.getElementById("setEmailOrderConfirmed").checked;
+    settings.emailOrderPacked = document.getElementById("setEmailOrderPacked").checked;
+    settings.emailOrderCancelled = document.getElementById("setEmailOrderCancelled").checked;
+    settings.emailProductRequest = document.getElementById("setEmailProductRequest").checked;
+    settings.emailReview = document.getElementById("setEmailReview").checked;
+    settings.emailEnquiry = document.getElementById("setEmailEnquiry").checked;
     settings.address = document.getElementById("setAddress").value.trim();
     settings.hours = document.getElementById("setHours").value.trim();
     settings.gstin = document.getElementById("setGstin").value.trim();
@@ -1225,13 +1422,38 @@ async function boot(){
     if(document.hidden) return;
     await refreshSharedProducts();
     await refreshSharedSettings();
-    if(sessionStorage.getItem("amcAdminLoggedIn") === "1") { await refreshOrdersFromServer(); await refreshEnquiriesFromServer(); }
+    if(sessionStorage.getItem("amcAdminLoggedIn") === "1") { await refreshOrdersFromServer(); await refreshEnquiriesFromServer(); await refreshProductRequests(); await refreshAdminReviews(); renderReports(); }
   }, 5000);
 
 }
 
 boot();
+  const gmailReturn=new URLSearchParams(window.location.search).get("gmail");
+  if(gmailReturn){ window.history.replaceState({}, document.title, window.location.pathname); if(gmailReturn==="connected"){ setTimeout(()=>{ enterAdmin(); document.querySelector('[data-panel="panelSettings"]')?.click(); refreshGmailStatus(); showToast("Gmail connected successfully"); },350); } }
+  // Growth feature bindings
+  const cw=document.getElementById('cartWhatsAppBtn'); if(cw)cw.onclick=()=>{if(!cart.length){showToast('Your cart is empty');return;}window.open(waLink(cartWhatsAppText()),'_blank','noopener');};
+  document.getElementById('trackOrderBtn')?.addEventListener('click',()=>openModal('trackOverlay'));
+  document.getElementById('trackCloseBtn')?.addEventListener('click',()=>closeModal('trackOverlay'));
+  document.getElementById('trackForm')?.addEventListener('submit',async e=>{e.preventDefault();const box=document.getElementById('trackResult');box.classList.add('show');box.innerHTML='Checking…';try{box.innerHTML=await trackOrder(document.getElementById('trackOrderId').value.trim(),document.getElementById('trackPhone').value.trim());}catch(err){box.innerHTML='<b>Order not found.</b><div style="margin-top:5px;color:var(--ink-soft);">Check the order number and phone number, or contact AMC Enterprises.</div>';}});
+  document.getElementById('requestProductBtn')?.addEventListener('click',()=>openModal('requestOverlay'));document.getElementById('requestCloseBtn')?.addEventListener('click',()=>closeModal('requestOverlay'));
+  document.getElementById('requestForm')?.addEventListener('submit',async e=>{e.preventDefault();const m=document.getElementById('requestMessage');try{await apiJson('/api/product-requests',{method:'POST',body:JSON.stringify({name:document.getElementById('requestName').value.trim(),phone:document.getElementById('requestPhone').value.trim(),productName:document.getElementById('requestProductName').value.trim(),quantity:Number(document.getElementById('requestQty').value||1),notes:document.getElementById('requestNotes').value.trim()})});m.textContent='Request sent. AMC Enterprises will follow up.';m.style.display='block';e.target.reset();}catch(err){m.textContent=err.message;m.style.display='block';}});
+  document.getElementById('writeReviewBtn')?.addEventListener('click',()=>openModal('reviewOverlay'));document.getElementById('reviewCloseBtn')?.addEventListener('click',()=>closeModal('reviewOverlay'));
+  document.getElementById('reviewForm')?.addEventListener('submit',async e=>{e.preventDefault();const m=document.getElementById('reviewMessage');try{await apiJson('/api/reviews',{method:'POST',body:JSON.stringify({name:document.getElementById('reviewName').value.trim(),rating:Number(document.getElementById('reviewRating').value),review:document.getElementById('reviewText').value.trim()})});m.textContent='Thank you. Your review was submitted for approval.';m.style.display='block';e.target.reset();}catch(err){m.textContent=err.message;m.style.display='block';}});
+  document.getElementById('customerAccountBtn')?.addEventListener('click',()=>{openModal('customerOverlay');refreshCustomerAccount();});document.getElementById('customerCloseBtn')?.addEventListener('click',()=>closeModal('customerOverlay'));
+  document.getElementById('customerLoginForm')?.addEventListener('submit',async e=>{e.preventDefault();const m=document.getElementById('customerMessage');try{await apiJson('/api/customer-account',{method:'POST',body:JSON.stringify({action:'login',identifier:document.getElementById('customerLoginId').value.trim(),password:document.getElementById('customerLoginPassword').value})});m.textContent='Logged in successfully.';m.style.display='block';refreshCustomerAccount();}catch(err){m.textContent=err.message;m.style.display='block';}});
+  document.getElementById('customerRegisterForm')?.addEventListener('submit',async e=>{e.preventDefault();const m=document.getElementById('customerMessage');try{await apiJson('/api/customer-account',{method:'POST',body:JSON.stringify({action:'register',name:document.getElementById('customerRegName').value.trim(),phone:document.getElementById('customerRegPhone').value.trim(),email:document.getElementById('customerRegEmail').value.trim(),address:document.getElementById('customerRegAddress').value.trim(),password:document.getElementById('customerRegPassword').value})});m.textContent='Account created. You are now logged in.';m.style.display='block';refreshCustomerAccount();}catch(err){m.textContent=err.message;m.style.display='block';}});
+  document.getElementById('customerLogout')?.addEventListener('click',async()=>{await apiJson('/api/customer-account',{method:'DELETE'});refreshCustomerAccount();});
+  document.getElementById('customerRefreshOrders')?.addEventListener('click',refreshCustomerAccount);
+  document.getElementById('refreshRequestsBtn')?.addEventListener('click',refreshProductRequests);document.getElementById('refreshReviewsBtn')?.addEventListener('click',refreshAdminReviews);document.getElementById('exportOrdersBtn')?.addEventListener('click',exportOrdersCSV);
+  // PWA install prompt
+  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e;document.getElementById('installBanner')?.classList.add('show');});
+  document.getElementById('installAppBtn')?.addEventListener('click',async()=>{if(!deferredInstallPrompt)return;deferredInstallPrompt.prompt();deferredInstallPrompt=null;document.getElementById('installBanner')?.classList.remove('show');});
+  document.getElementById('dismissInstallBtn')?.addEventListener('click',()=>document.getElementById('installBanner')?.classList.remove('show'));
+  if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  refreshPublicReviews();
+
 })();
 </script>
 </body>
 </html>
+
